@@ -17,7 +17,11 @@ if(array_key_exists("PATH_INFO", $_SERVER))
 	$sep = str_replace("/", "\/", $_SERVER["PATH_INFO"]);
 }
 $tmp_uri_array = preg_split("/".$sep."/", $_SERVER["REQUEST_URI"]);
-$config['base_url']	= $tmp_uri_array[0];
+$base = $tmp_uri_array[0];
+if (!$base) {
+	$base = '/';
+}
+$config['base_url']	= $base;
 
 /*
 |--------------------------------------------------------------------------
